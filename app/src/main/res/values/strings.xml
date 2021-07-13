@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">寻至</string>
+    <string name="login_title">欢迎来到寻至</string>
+    <string name="login_string">登录</string>
 </resources>

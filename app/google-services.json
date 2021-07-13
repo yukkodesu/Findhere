@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "736172408020",
+    "project_id": "lostandfound-2cdc2",
+    "storage_bucket": "lostandfound-2cdc2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:736172408020:android:afce47b69fee09c237cf41",
+        "android_client_info": {
+          "package_name": "com.project.findhere"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "736172408020-b1ueucopl5dc9cbd6kdtgkrfeg0pmisr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.project.findhere",
+            "certificate_hash": "4863687b8febd3fe913c88f9963c46da623b313a"
+          }
+        },
+        {
+          "client_id": "736172408020-qca8utu62us5npq4977n0os7rdh20i7l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA96yDnb_nPFYa9GZU5ToOE8Ugddsg9AJU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "736172408020-qca8utu62us5npq4977n0os7rdh20i7l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
