@@ -7,6 +7,7 @@ import android.view.MenuItem
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import com.google.android.material.navigation.NavigationView
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +18,13 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.let {
             it.setDisplayHomeAsUpEnabled(true)
             it.setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24)
+        }
+        val navView : NavigationView = findViewById(R.id.main_navView)
+        navView.setCheckedItem(R.id.mainSpace)
+        navView.setNavigationItemSelectedListener {
+            val drawerLayout : DrawerLayout = findViewById(R.id.drawerlayout)
+            drawerLayout.closeDrawers()
+            true
         }
     }
 

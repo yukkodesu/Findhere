@@ -15,19 +15,18 @@
             android:layout_height="?android:attr/actionBarSize"
             android:background="?attr/colorPrimary"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            app:layout_constraintTop_toTopOf="parent"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
 
 
         </androidx.appcompat.widget.Toolbar>
     </FrameLayout>
 
-    <TextView
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/main_navView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/white"
-        android:text="hello">
-    </TextView>
+        app:menu="@menu/main_menu"
+        app:headerLayout="@layout/main_header"/>
 </androidx.drawerlayout.widget.DrawerLayout>
 
