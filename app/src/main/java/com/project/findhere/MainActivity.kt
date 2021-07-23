@@ -28,6 +28,16 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onBackPressed() {
+        val drawerLayout : DrawerLayout = findViewById(R.id.drawerlayout)
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)){
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+        else{
+            super.onBackPressed()
+        }
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val drawerLayout : DrawerLayout = findViewById(R.id.drawerlayout)
         when(item.itemId){

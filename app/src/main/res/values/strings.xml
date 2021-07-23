@@ -8,4 +8,6 @@
     <string name="main_username">Username</string>
     <string name="login_emailAddress">邮箱</string>
     <string name="login_password">密码</string>
+    <string name="tab_finding">寻物</string>
+    <string name="tab_found">招领</string>
 </resources>

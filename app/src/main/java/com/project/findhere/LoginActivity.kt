@@ -35,11 +35,13 @@ class LoginActivity : AppCompatActivity() {
             val password = etPassword.text.toString()
             if(email.isBlank()||password.isBlank()) {
                 Toast.makeText(this,"邮箱/密码不能为空",Toast.LENGTH_SHORT).show()
+                loginbtn.isEnabled = true
                 return@setOnClickListener
             }
             // Firebase authentication check
 
             auth.signInWithEmailAndPassword(email,password).addOnCompleteListener{ task ->
+                Log.d(TAG,"Now logging")
                 loginbtn.isEnabled = true
                 if (task.isSuccessful){
                     Toast.makeText(this,"登陆成功",Toast.LENGTH_SHORT).show()
