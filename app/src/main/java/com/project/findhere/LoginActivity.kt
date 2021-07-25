@@ -48,7 +48,7 @@ class LoginActivity : AppCompatActivity() {
                     goMainActivity()
                 }else{
                     Log.i(TAG,"登陆失败",task.exception)
-                    Toast.makeText(this,"登陆失败",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"密码/邮箱错误",Toast.LENGTH_SHORT).show()
                 }
             }
         }

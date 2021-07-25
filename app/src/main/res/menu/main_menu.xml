@@ -1,18 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-    <group android:checkableBehavior="single">
+    <group
+        android:id="@+id/group1"
+        android:checkableBehavior="single">
         <item
             android:id="@+id/mainSpace"
             android:icon="@drawable/ic_baseline_profile_24"
             android:title="@string/main_space"/>
         <item
-            android:id="@+id/mainMessage"
-            android:icon="@drawable/ic_baseline_message_24"
-            android:title="@string/main_message"/>
+            android:id="@+id/mainProfile"
+            android:icon="@drawable/ic_baseline_person_24"
+            android:title="@string/main_profile"/>
         <item
             android:id="@+id/mainCollection"
             android:icon="@drawable/ic_baseline_collection_24"
             android:title="@string/main_collection"/>
+        <item
+            android:id="@+id/mainSettings"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="@string/main_settings"/>
+    </group>
+    <group
+        android:id="@+id/group2"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/mainQuit"
+            android:icon="@drawable/ic_baseline_arrow_back_24"
+            android:title="@string/main_quit"/>
     </group>
 
 </menu>

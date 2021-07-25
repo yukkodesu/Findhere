@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
+import com.google.firebase.auth.FirebaseAuth
 import com.project.findhere.R.id.mainSpace as mainSpace1
 
 class MainActivity : AppCompatActivity() {
@@ -26,10 +27,18 @@ class MainActivity : AppCompatActivity() {
         navView.setCheckedItem(mainSpace1)
         navView.setNavigationItemSelectedListener {
 
-            if (it.itemId == R.id.mainSpace){
-                val intent = Intent(this,ProfileActivity::class.java)
-                startActivity(intent)
-            }
+           when(it.itemId){
+               R.id.mainProfile ->{
+                   val intent = Intent(this,ProfileActivity::class.java)
+                   startActivity(intent)
+               }
+               R.id.mainQuit -> {
+                   FirebaseAuth.getInstance().signOut()
+                   val intent = Intent(this,LoginActivity::class.java)
+                   startActivity(intent)
+                   finish()
+               }
+           }
 
             val drawerLayout : DrawerLayout = findViewById(R.id.drawerlayout)
             drawerLayout.closeDrawers()
@@ -54,5 +63,4 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
-
 }
