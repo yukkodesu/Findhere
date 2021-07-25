@@ -6,10 +6,15 @@ import android.os.Bundle
 import android.view.Gravity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Adapter
+import android.widget.TableLayout
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.navigation.NavigationView
+import com.google.android.material.tabs.TabLayout
 import com.project.findhere.R.id.mainSpace as mainSpace1
 
 class MainActivity : AppCompatActivity() {
@@ -27,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         navView.setNavigationItemSelectedListener {
 
             if (it.itemId == R.id.mainSpace){
-                val intent = Intent(this,ProfileActivity::class.java)
+                val intent = Intent(this,LoginActivity::class.java)
                 startActivity(intent)
             }
 
@@ -35,6 +40,32 @@ class MainActivity : AppCompatActivity() {
             drawerLayout.closeDrawers()
             true
         }
+
+        //setup Viewpager
+        val viewpager : ViewPager2 = findViewById(R.id.viewpager)
+        val tabs : TabLayout = findViewById(R.id.tab)
+        val adapter = FragmentAdapter(supportFragmentManager,lifecycle)
+        viewpager.adapter = adapter
+        tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                if (tab != null) {
+                    viewpager.setCurrentItem(tab.position)
+                }
+            }
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+            }
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+            }
+        })
+        viewpager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                super.onPageSelected(position)
+                tabs.selectTab(tabs.getTabAt(position))
+            }
+        })
+
+        // end setup viewpager
+
     }
 
     override fun onBackPressed() {

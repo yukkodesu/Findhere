@@ -30,16 +30,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
+                android:background="?android:attr/colorPrimary"
+                app:tabSelectedTextColor="@color/white"
+                app:tabIndicatorColor="@color/white"
+                app:tabInlineLabel="true"
+                app:tabIconTint="@color/tab_icon"
                 android:id="@+id/tab">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_baseline_card_travel_24"
                     android:text="@string/tab_found" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:icon="@drawable/ic_baseline_explore_24"
                     android:text="@string/tab_finding" />
             </com.google.android.material.tabs.TabLayout>
 
