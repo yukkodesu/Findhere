@@ -92,4 +92,10 @@ class MainActivity : AppCompatActivity() {
         }
         return true
     }
+
+    override fun onResume() {
+        super.onResume()
+        val navView : NavigationView = findViewById(R.id.main_navView)
+        navView.setCheckedItem(mainSpace1)
+    }
 }
