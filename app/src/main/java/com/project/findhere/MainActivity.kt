@@ -14,11 +14,8 @@ import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.navigation.NavigationView
-<<<<<<< HEAD
 import com.google.android.material.tabs.TabLayout
-=======
 import com.google.firebase.auth.FirebaseAuth
->>>>>>> f179f640423252de1704feb3d8264a09d421721b
 import com.project.findhere.R.id.mainSpace as mainSpace1
 
 class MainActivity : AppCompatActivity() {

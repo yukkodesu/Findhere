@@ -1,6 +1,7 @@
 package com.project.findhere
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -24,17 +25,26 @@ class FindFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-
+    private lateinit var firebaseDb : FirebaseFirestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val db = FirebaseFirestore.getInstance()
+        firebaseDb = FirebaseFirestore.getInstance()
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        val postsReference = db.collection("posts")
 
+        val postsReference = firebaseDb.collection("posts")
+        postsReference.addSnapshotListener { snapshot, exception ->
+            if(exception != null || snapshot == null) {
+                Log.e("FindFragment", "Exception when querying posts")
+                return@addSnapshotListener
+            }
+            for(document in snapshot.documents){
+                Log.d("Find","Document ${document.id} : ${document.data}")
+            }
+        }
     }
 
     override fun onCreateView(
