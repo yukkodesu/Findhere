@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager2.widget.ViewPager2
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
@@ -72,6 +73,14 @@ class MainActivity : AppCompatActivity() {
         })
 
         // end setup viewpager
+
+        //add floatButton
+        val fab : FloatingActionButton = findViewById(R.id.main_fab)
+        fab.setOnClickListener{
+            val intent = Intent(this,AddActivity::class.java)
+            startActivity(intent)
+        }
+        //
 
     }
 

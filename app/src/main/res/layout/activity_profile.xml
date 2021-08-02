@@ -35,6 +35,19 @@
                 android:drawableLeft="@drawable/ic_baseline_arrow_back_24"
                 android:paddingLeft="10dp"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/profile_center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/profile_Image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.088"
+                app:layout_constraintStart_toEndOf="@+id/profile_backButton"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.45" />
+
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_Image"
                 android:layout_width="90dp"
