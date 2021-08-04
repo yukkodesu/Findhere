@@ -16,4 +16,6 @@
     <string name="main_quit">退出登录</string>
     <string name="main_settings">设置</string>
     <string name="profile_center">个人中心</string>
+    <string name="takePhoto">相机拍摄</string>
+    <string name="chooseFromAlbum">从相册选择</string>
 </resources>
