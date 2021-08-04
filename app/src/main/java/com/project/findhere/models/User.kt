@@ -1,4 +1,3 @@
 package com.project.findhere.models
 
-data class Users {
-}
+data class User(var username : String = "",var stuid : String,var grade : Int)

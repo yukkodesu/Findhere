@@ -7,8 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.project.findhere.models.Post
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,14 +37,18 @@ class FindFragment : Fragment() {
             param2 = it.getString(ARG_PARAM2)
         }
 
-        val postsReference = firebaseDb.collection("posts")
+        val postsReference = firebaseDb
+            .collection("posts")
+            .limit(20)
+            .orderBy("time_ms",Query.Direction.DESCENDING)
         postsReference.addSnapshotListener { snapshot, exception ->
             if(exception != null || snapshot == null) {
                 Log.e("FindFragment", "Exception when querying posts")
                 return@addSnapshotListener
             }
-            for(document in snapshot.documents){
-                Log.d("Find","Document ${document.id} : ${document.data}")
+            val postList = snapshot.toObjects(Post::class.java)
+            for(post in postList){
+                Log.d("FindFragment","${post}")
             }
         }
     }
