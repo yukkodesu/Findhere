@@ -1,124 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="250dp"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:layout_marginTop="10dp"
+    app:cardCornerRadius="5dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.02">
 
-    <androidx.cardview.widget.CardView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.02"
-        app:cardCornerRadius="5dp">
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/cardimage"
+            android:layout_width="match_parent"
+            android:layout_height="160dp"
+            android:layout_marginBottom="90dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/cardavatar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardimage" />
+
+        <TextView
+            android:id="@+id/cardusername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toEndOf="@+id/cardavatar"
+            app:layout_constraintTop_toBottomOf="@+id/cardimage" />
+
+        <TextView
+            android:id="@+id/cardsusername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="3dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/cardavatar"
+            app:layout_constraintTop_toBottomOf="@+id/cardusername" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="3dp"
+            app:layout_constraintStart_toEndOf="@+id/cardsusername"
+            app:layout_constraintTop_toBottomOf="@+id/cardusername"
+            app:srcCompat="@drawable/ic_baseline_location_on_24" />
+
+        <TextView
+            android:id="@+id/cardloc"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="3dp"
+            android:text="TextView"
+            app:layout_constraintStart_toEndOf="@+id/imageView2"
+            app:layout_constraintTop_toBottomOf="@+id/cardusername" />
+
+        <Button
+            android:id="@+id/cardarrowBtn"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="5dp"
+            android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_down_24"
+            android:padding="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.955"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardimage"
+            app:layout_constraintVertical_bias="0.062" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/expandableLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cardavatar">
 
-            <ImageView
-                android:id="@+id/imageView"
+            <ScrollView
+                android:id="@+id/cardscrollview"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:layout_marginBottom="90dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/saekano"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/cardavatar"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-            <TextView
-                android:id="@+id/cardusername"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="20dp"
-                android:text="TextView"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                app:layout_constraintStart_toEndOf="@+id/cardavatar"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-            <TextView
-                android:id="@+id/cardsmalltext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="3dp"
-                android:text="TextView"
-                app:layout_constraintStart_toEndOf="@+id/cardavatar"
-                app:layout_constraintTop_toBottomOf="@+id/cardusername" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="3dp"
-                app:layout_constraintStart_toEndOf="@+id/cardsmalltext"
-                app:layout_constraintTop_toBottomOf="@+id/cardusername"
-                app:srcCompat="@drawable/ic_baseline_location_on_24" />
-
-            <TextView
-                android:id="@+id/cardloc"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="3dp"
-                android:text="TextView"
-                app:layout_constraintStart_toEndOf="@+id/imageView2"
-                app:layout_constraintTop_toBottomOf="@+id/cardusername" />
-
-            <Button
-                android:id="@+id/arrowBtn"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="28dp"
-                android:layout_marginEnd="5dp"
-                android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_down_24"
-                android:padding="2dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.955"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView"
-                app:layout_constraintVertical_bias="0.062" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/expandableLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/cardavatar"
-                app:layout_constraintEnd_toEndOf="parent">
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp">
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/carddescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:layout_editor_absoluteX="10dp"
-                    />
+                    android:text="@string/LoremIpsum" />
+            </ScrollView>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            <ImageView
+                android:id="@+id/mailIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginStart="12dp"
+                android:src="@drawable/ic_baseline_mail_24"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardscrollview"
+                />
+            <TextView
+                android:id="@+id/mailNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="workemail@gmail.com"
+                android:layout_marginStart="32dp"
+                android:textColor="#000"
+                style="@style/TextAppearance.AppCompat.Medium"
+                app:layout_constraintTop_toTopOf="@+id/mailIcon"
+                app:layout_constraintStart_toEndOf="@id/mailIcon"
+                />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

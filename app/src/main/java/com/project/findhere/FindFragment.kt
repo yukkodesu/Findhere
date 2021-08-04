@@ -28,6 +28,7 @@ class FindFragment : Fragment() {
     private var param2: String? = null
 
     private lateinit var firebaseDb : FirebaseFirestore
+    private lateinit var posts : MutableList<Post>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         firebaseDb = FirebaseFirestore.getInstance()
@@ -36,7 +37,7 @@ class FindFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
+        posts = mutableListOf()
         val postsReference = firebaseDb
             .collection("posts")
             .limit(20)

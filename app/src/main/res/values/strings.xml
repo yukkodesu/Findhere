@@ -18,4 +18,8 @@
     <string name="profile_center">个人中心</string>
     <string name="takePhoto">相机拍摄</string>
     <string name="chooseFromAlbum">从相册选择</string>
+    <string name="LoremIpsum">Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
+    Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
+    Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum</string>
+
 </resources>
