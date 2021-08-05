@@ -2,15 +2,12 @@ package com.project.findhere
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.transition.TransitionManager
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.project.findhere.models.Post
@@ -21,10 +18,11 @@ private const val ARG_PARAM2 = "param2"
 class FoundFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
+
     // TODO: Make recyclerview inflate in Found fragment
-    private lateinit var firebaseDb : FirebaseFirestore
-    private lateinit var posts : MutableList<Post>
-    private lateinit var adapter : FoundPostAdapter
+    private lateinit var firebaseDb: FirebaseFirestore
+    private lateinit var posts: MutableList<Post>
+    private lateinit var adapter: FoundPostAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -45,8 +43,8 @@ class FoundFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         firebaseDb = FirebaseFirestore.getInstance()
         posts = mutableListOf()
-        adapter = FoundPostAdapter(this.requireContext(),posts)
-        val rvfound : RecyclerView = this.requireView().findViewById(R.id.rvFound)
+        adapter = FoundPostAdapter(this.requireContext(), posts)
+        val rvfound: RecyclerView = this.requireView().findViewById(R.id.rvFound)
         rvfound.adapter = adapter
         rvfound.layoutManager = LinearLayoutManager(this.requireContext())
         rvfound.setHasFixedSize(true)
@@ -55,18 +53,18 @@ class FoundFragment : Fragment() {
             .limit(20)
             .orderBy("time_ms", Query.Direction.DESCENDING)
         postsReference.addSnapshotListener { snapshot, exception ->
-            if(exception != null || snapshot == null) {
+            if (exception != null || snapshot == null) {
                 Log.e("FoundFragment", "Exception when querying posts")
                 return@addSnapshotListener
             }
             val postList = snapshot.toObjects(Post::class.java)
             posts.clear()
-            repeat(8){
+            repeat(8) {
                 posts.addAll(postList)
             }
             adapter.notifyDataSetChanged()
-            for(post in postList){
-                Log.d("FoundFragment","${post}")
+            for (post in postList) {
+                Log.d("FoundFragment", "${post}")
             }
         }
     }
