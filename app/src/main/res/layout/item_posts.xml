@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/foundcard"
     android:layout_width="match_parent"
-    android:layout_height="250dp"
+    android:layout_height="wrap_content"
     android:layout_marginLeft="8dp"
-    android:layout_marginRight="8dp"
     android:layout_marginTop="10dp"
+    android:layout_marginRight="8dp"
     app:cardCornerRadius="5dp"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
@@ -17,28 +17,37 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp">
 
         <ImageView
             android:id="@+id/cardimage"
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:layout_marginBottom="90dp"
             android:scaleType="centerCrop"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/cardavatar"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardimage" />
+
+        <TextView
+            android:id="@+id/cardtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            app:layout_constraintStart_toEndOf="@+id/cardavatar"
             app:layout_constraintTop_toBottomOf="@+id/cardimage" />
 
         <TextView
@@ -46,30 +55,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="20dp"
-            android:text="TextView"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            app:layout_constraintStart_toEndOf="@+id/cardavatar"
-            app:layout_constraintTop_toBottomOf="@+id/cardimage" />
-
-        <TextView
-            android:id="@+id/cardsusername"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:layout_marginTop="3dp"
             android:text="TextView"
             app:layout_constraintStart_toEndOf="@+id/cardavatar"
-            app:layout_constraintTop_toBottomOf="@+id/cardusername" />
+            app:layout_constraintTop_toBottomOf="@+id/cardtitle" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/cardlocationimg"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="80dp"
             android:layout_marginTop="3dp"
-            app:layout_constraintStart_toEndOf="@+id/cardsusername"
-            app:layout_constraintTop_toBottomOf="@+id/cardusername"
+            app:layout_constraintStart_toEndOf="@+id/cardusername"
+            app:layout_constraintTop_toBottomOf="@+id/cardtitle"
             app:srcCompat="@drawable/ic_baseline_location_on_24" />
 
         <TextView
@@ -79,30 +77,30 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="3dp"
             android:text="TextView"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/cardusername" />
+            app:layout_constraintStart_toEndOf="@+id/cardlocationimg"
+            app:layout_constraintTop_toBottomOf="@+id/cardtitle" />
 
         <Button
             android:id="@+id/cardarrowBtn"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginTop="28dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="5dp"
-            android:drawableLeft="@drawable/ic_baseline_keyboard_arrow_down_24"
-            android:padding="2dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/ic_baseline_keyboard_arrow_down_24"
+            android:backgroundTint="@color/black"
+            android:paddingLeft="11dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.955"
+            app:layout_constraintHorizontal_bias="0.933"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardimage"
-            app:layout_constraintVertical_bias="0.062" />
+            app:layout_constraintTop_toBottomOf="@+id/cardimage" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/expandableLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cardavatar">
 
@@ -110,12 +108,13 @@
                 android:id="@+id/cardscrollview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp">
+                app:layout_constraintVertical_bias="0.25">
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/carddescription"
@@ -126,25 +125,33 @@
 
             <ImageView
                 android:id="@+id/mailIcon"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginTop="22dp"
-                android:layout_marginStart="12dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="20dp"
                 android:src="@drawable/ic_baseline_mail_24"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardscrollview"
-                />
+                app:layout_constraintTop_toBottomOf="@id/cardscrollview" />
+
             <TextView
                 android:id="@+id/mailNumber"
+                style="@style/TextAppearance.AppCompat.Medium"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="15dp"
                 android:text="workemail@gmail.com"
-                android:layout_marginStart="32dp"
                 android:textColor="#000"
-                style="@style/TextAppearance.AppCompat.Medium"
-                app:layout_constraintTop_toTopOf="@+id/mailIcon"
                 app:layout_constraintStart_toEndOf="@id/mailIcon"
-                />
+                app:layout_constraintTop_toBottomOf="@id/cardscrollview" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:text="联系地址"
+                app:layout_constraintStart_toEndOf="@id/mailIcon"
+                app:layout_constraintTop_toBottomOf="@id/mailNumber" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

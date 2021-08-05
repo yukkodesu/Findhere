@@ -6,8 +6,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.transition.TransitionManager
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.project.findhere.models.Post
@@ -46,6 +49,7 @@ class FoundFragment : Fragment() {
         val rvfound : RecyclerView = this.requireView().findViewById(R.id.rvFound)
         rvfound.adapter = adapter
         rvfound.layoutManager = LinearLayoutManager(this.requireContext())
+        rvfound.setHasFixedSize(true)
         val postsReference = firebaseDb
             .collection("posts")
             .limit(20)
