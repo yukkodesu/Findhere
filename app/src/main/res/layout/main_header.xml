@@ -9,7 +9,7 @@
     android:background="?attr/colorPrimary">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/main_Image"
+        android:id="@+id/main_avatar"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:src="@drawable/ic_baseline_person_24"
@@ -29,12 +29,12 @@
         android:layout_marginTop="21dp"
         android:text="@string/main_username"
         android:textColor="#FFF"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_Image"
+        app:layout_constraintTop_toBottomOf="@+id/main_avatar"
         app:layout_constraintVertical_bias="0.0" />
 
 

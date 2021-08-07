@@ -2,19 +2,29 @@ package com.project.findhere
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.viewpager2.widget.ViewPager2
+import com.bumptech.glide.Glide
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
+import com.project.findhere.models.User
+import de.hdodenhof.circleimageview.CircleImageView
 import com.project.findhere.R.id.mainSpace as mainSpace1
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var firebaseDb: FirebaseFirestore
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -75,8 +85,27 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this,AddActivity::class.java)
             startActivity(intent)
         }
-        //
+        //floatButton end
 
+        //setting up userinfo
+        val auth = FirebaseAuth.getInstance()
+        firebaseDb = FirebaseFirestore.getInstance()
+        val documentRef = firebaseDb.collection("users").document("${auth.currentUser?.uid}")
+        documentRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null) {
+                    val thisuser = document.toObject<User>()
+                    val mainavatar : CircleImageView = findViewById(R.id.main_avatar)
+                    Glide.with(this).load(thisuser?.avatarurl).into(mainavatar)
+                    val mainusername : TextView = findViewById(R.id.main_Username)
+                    mainusername.text = thisuser?.username
+                } else {
+                    Log.d("MainActivity", "get userinfo failed with no userid exist")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("MainActivity", "get userinfo with ", exception)
+            }
     }
 
     override fun onBackPressed() {

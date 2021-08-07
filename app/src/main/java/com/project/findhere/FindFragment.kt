@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
-import com.project.findhere.models.Post
+import com.project.findhere.models.FoundPost
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ class FindFragment : Fragment() {
     private var param2: String? = null
 
     private lateinit var firebaseDb : FirebaseFirestore
-    private lateinit var posts : MutableList<Post>
+    private lateinit var foundPosts : MutableList<FoundPost>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         firebaseDb = FirebaseFirestore.getInstance()
@@ -35,7 +35,7 @@ class FindFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        posts = mutableListOf()
+        foundPosts = mutableListOf()
         val postsReference = firebaseDb
             .collection("posts")
             .limit(20)
@@ -45,7 +45,7 @@ class FindFragment : Fragment() {
                 Log.e("FindFragment", "Exception when querying posts")
                 return@addSnapshotListener
             }
-            val postList = snapshot.toObjects(Post::class.java)
+            val postList = snapshot.toObjects(FoundPost::class.java)
             for(post in postList){
                 Log.d("FindFragment","${post}")
             }
