@@ -1,5 +1,6 @@
 package com.project.findhere
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -8,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
@@ -37,9 +39,14 @@ class ProfileActivity : AppCompatActivity() {
                 }
             }
 
-        val button : MaterialButton = findViewById(R.id.profile_backButton)
-        button.setOnClickListener(){
+        val button1 : MaterialButton = findViewById(R.id.profile_backButton)
+        button1.setOnClickListener(){
             onBackPressed()
+        }
+
+        val button2 : FloatingActionButton = findViewById(R.id.profile_fab)
+        button2.setOnClickListener {
+            // TODO
         }
 
     }
@@ -58,6 +65,6 @@ class ProfileActivity : AppCompatActivity() {
         cardList.add(ProfileCard("用户名", "${user.username}", R.drawable.ic_baseline_notes_24))
         cardList.add(ProfileCard("QQ", "${user.qq}", R.drawable.ic_baseline_connect_without_contact_24))
         cardList.add(ProfileCard("邮箱", "${auth.currentUser?.email}", R.drawable.ic_baseline_local_post_office_24))
-        cardList.add(ProfileCard("年级", "${user.grade}", R.drawable.ic_baseline_create_24))
+        cardList.add(ProfileCard("年级", "${user.grade}", R.drawable.ic_baseline_calendar_today_24))
     }
 }

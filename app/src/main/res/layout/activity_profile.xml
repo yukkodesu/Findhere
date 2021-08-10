@@ -75,5 +75,15 @@
 
     </androidx.recyclerview.widget.RecyclerView>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/profile_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="25dp"
+        android:src="@drawable/ic_baseline_create_24"
+        android:backgroundTint="@color/purple_200"
+        app:elevation="8dp"/>
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

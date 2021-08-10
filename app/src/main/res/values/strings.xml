@@ -26,5 +26,7 @@
     <string name="register_password">register_password</string>
     <string name="register_confirmpassword">确认密码</string>
     <string name="register_title">register</string>
+    <string name="editProfile">编辑</string>
+    <string name="upload">发布</string>
 
 </resources>
