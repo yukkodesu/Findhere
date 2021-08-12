@@ -7,12 +7,14 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.media.ExifInterface
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
+import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import java.io.File
 
@@ -39,8 +41,7 @@ class AddActivity : AppCompatActivity() {
                 outputImage.delete()
             }
             outputImage.createNewFile()
-            imageUri =
-                FileProvider.getUriForFile(this,"com.example.cameraalbumtest.fileprovider",outputImage)
+            imageUri = FileProvider.getUriForFile(this,"com.project.findhere",outputImage)
 
             val intent = Intent("android.media.action.IMAGE_CAPTURE")
             intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri)

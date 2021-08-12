@@ -13,11 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Findhere">
         <activity
-            android:name=".RegisterActivity"
-            android:exported="true" />
-        <activity
-            android:name=".models.RegisterActivity"
-            android:exported="true" />
+            android:name=".RegisterActivity"/>
         <activity android:name=".AddActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".LoginActivity">
@@ -31,7 +27,7 @@
 
         <provider
             android:name="androidx.core.content.FileProvider"
-            android:authorities="com.example.cameraalbumtest.fileprovider"
+            android:authorities="com.project.findhere"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data

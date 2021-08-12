@@ -24,5 +24,6 @@
     <string name="register_confirmpassword">确认密码</string>
     <string name="register_title">用户注册</string>
     <string name="regActivityButton">注册</string>
-
+    <string name="editProfile">编辑</string>
+    <string name="upload">发布</string>
 </resources>
