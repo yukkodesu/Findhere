@@ -95,8 +95,10 @@ class MainActivity : AppCompatActivity() {
             .addOnSuccessListener { document ->
                 if (document != null) {
                     val thisuser = document.toObject<User>()
-                    val mainavatar : CircleImageView = findViewById(R.id.main_avatar)
-                    Glide.with(this).load(thisuser?.avatarurl).into(mainavatar)
+                    if(thisuser?.avatarurl != ""){
+                        val mainavatar : CircleImageView = findViewById(R.id.main_avatar)
+                        Glide.with(this).load(thisuser?.avatarurl).into(mainavatar)
+                    }
                     val mainusername : TextView = findViewById(R.id.main_Username)
                     mainusername.text = thisuser?.username
                 } else {

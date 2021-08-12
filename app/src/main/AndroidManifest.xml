@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Findhere">
         <activity
+            android:name=".RegisterActivity"
+            android:exported="true" />
+        <activity
             android:name=".models.RegisterActivity"
             android:exported="true" />
         <activity android:name=".AddActivity" />

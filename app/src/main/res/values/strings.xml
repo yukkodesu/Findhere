@@ -21,10 +21,8 @@
     <string name="LoremIpsum">Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
     Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum
     Lorem IpsumLorem IpsumLorem IpsumLorem IpsumLorem Ipsum</string>
-    <string name="Register_string">Register_</string>
-    <string name="register_emailAddress">register</string>
-    <string name="register_password">register_password</string>
     <string name="register_confirmpassword">确认密码</string>
-    <string name="register_title">register</string>
+    <string name="register_title">用户注册</string>
+    <string name="regActivityButton">注册</string>
 
 </resources>
