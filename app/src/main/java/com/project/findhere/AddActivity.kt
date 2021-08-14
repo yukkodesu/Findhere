@@ -1,6 +1,7 @@
 package com.project.findhere
 
 import android.app.Activity
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
@@ -12,11 +13,14 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddActivity : AppCompatActivity() {
 
@@ -24,15 +28,21 @@ class AddActivity : AppCompatActivity() {
     val fromAlbum = 2
     lateinit var imageUri: Uri
     lateinit var  outputImage: File
+    private lateinit var tvDatePicker : TextView
+    private lateinit var  btnDatePicker : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add)
+        
+        //add backButton
 
         val button: MaterialButton = findViewById(R.id.add_backButton)
         button.setOnClickListener() {
             onBackPressed()
-        }
+        }//
+        
+        //addPhotoPicker
 
         val takePhotoBtn: Button = findViewById(R.id.add_button_takePhoto)
         takePhotoBtn.setOnClickListener{
@@ -54,7 +64,32 @@ class AddActivity : AppCompatActivity() {
             intent.addCategory(Intent.CATEGORY_OPENABLE)
             intent.type="image/*"
             startActivityForResult(intent, fromAlbum)
+        }//
+        
+        //add DatePicker
+
+        tvDatePicker = findViewById(R.id.add_tvDate)
+        btnDatePicker = findViewById(R.id.add_btnDatePicker)
+
+        val myCalendar = Calendar.getInstance()
+        
+        val datePicker = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
+            myCalendar.set(Calendar.YEAR,year)
+            myCalendar.set(Calendar.MONTH,month)
+            myCalendar.set(Calendar.DAY_OF_YEAR,dayOfMonth)
+            updateLable(myCalendar)
         }
+
+        btnDatePicker.setOnClickListener{
+            DatePickerDialog(this,datePicker,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_YEAR)).show()
+        }
+
+    }
+
+    private fun updateLable(myCalendar: Calendar) {
+        val myFormat = "dd-MM-yyyy"
+        val sdf = SimpleDateFormat(myFormat,Locale.CHINA)
+        tvDatePicker.setText(sdf.format(myCalendar.time))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
