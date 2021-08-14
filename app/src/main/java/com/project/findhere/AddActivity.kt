@@ -76,20 +76,14 @@ class AddActivity : AppCompatActivity() {
         val datePicker = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
             myCalendar.set(Calendar.YEAR,year)
             myCalendar.set(Calendar.MONTH,month)
-            myCalendar.set(Calendar.DAY_OF_YEAR,dayOfMonth)
+            myCalendar.set(Calendar.DAY_OF_MONTH,dayOfMonth)
             updateLable(myCalendar)
         }
 
         btnDatePicker.setOnClickListener{
-            DatePickerDialog(this,datePicker,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_YEAR)).show()
+            DatePickerDialog(this,datePicker,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show()
         }
 
-    }
-
-    private fun updateLable(myCalendar: Calendar) {
-        val myFormat = "dd-MM-yyyy"
-        val sdf = SimpleDateFormat(myFormat,Locale.CHINA)
-        tvDatePicker.setText(sdf.format(myCalendar.time))
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -136,5 +130,11 @@ class AddActivity : AppCompatActivity() {
 
     private fun getBitmapFromUri(uri: Uri) = contentResolver.openFileDescriptor(uri,"r")?.use {
         BitmapFactory.decodeFileDescriptor(it.fileDescriptor)
+    }
+
+    private fun updateLable(myCalendar: Calendar) {
+        val myFormat = "yyyy-MM-dd"
+        val sdf = SimpleDateFormat(myFormat,Locale.CHINA)
+        tvDatePicker.setText(sdf.format(myCalendar.time))
     }
 }
