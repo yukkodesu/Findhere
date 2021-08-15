@@ -1,6 +1,5 @@
 package com.project.findhere
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
@@ -18,8 +17,9 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class ProfileActivity : AppCompatActivity() {
 
+    var isEditable = false
 
-    val cardList = ArrayList<ProfileCard>()
+    private val cardList = ArrayList<ProfileCard>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -38,15 +38,18 @@ class ProfileActivity : AppCompatActivity() {
                     Log.d("ProfileActivity", "get userinfo failed with no userid exist")
                 }
             }
-
         val button1 : MaterialButton = findViewById(R.id.profile_backButton)
         button1.setOnClickListener(){
             onBackPressed()
         }
 
         val button2 : FloatingActionButton = findViewById(R.id.profile_fab)
+        val titletext : TextView = findViewById(R.id.profiletitletextview)
         button2.setOnClickListener {
             // TODO
+            button2.setImageResource(R.drawable.ic_baseline_check_24)
+            titletext.setText("点击信息卡牌修改个人信息")
+            isEditable = true
         }
 
     }
@@ -55,7 +58,7 @@ class ProfileActivity : AppCompatActivity() {
         val layoutManager = GridLayoutManager(this, 2)
         val recyclerView: RecyclerView = findViewById(R.id.profile_recyclerview)
         recyclerView.layoutManager = layoutManager
-        val adapter = CardAdapter(this, cardList)
+        val adapter = ProfileCardAdapter(this, cardList)
         recyclerView.adapter = adapter
     }
 

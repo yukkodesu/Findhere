@@ -8,15 +8,20 @@ import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import com.project.findhere.models.User
 
 class RegisterActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private lateinit var firebaseDb: FirebaseFirestore
+
     private val TAG = "RegisterActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         auth = Firebase.auth
+        firebaseDb = FirebaseFirestore.getInstance()
 
         val etEmail = findViewById<EditText>(R.id.register_EmailAddress)
         val etPassword = findViewById<EditText>(R.id.register_Password)
@@ -30,7 +35,8 @@ class RegisterActivity : AppCompatActivity() {
                 auth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this) { task ->
                         if (task.isSuccessful) {
-                            // Sign in success, update UI with the signed-in user's information
+                            val thisuser = User()
+                            val documentRef = firebaseDb.collection("users").document("${task.result?.user?.uid}").set(thisuser)
                             Log.d(TAG, "createUserWithEmail:success")
                             Toast.makeText(this,"注册成功,快去登录吧",Toast.LENGTH_SHORT)
                             finish()

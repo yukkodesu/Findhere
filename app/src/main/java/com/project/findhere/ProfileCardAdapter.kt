@@ -9,13 +9,15 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.bumptech.glide.Glide
+import com.google.android.material.card.MaterialCardView
 
-class CardAdapter (val context: Context,val CardList: List<ProfileCard>)
-    : Adapter<com.project.findhere.CardAdapter.ViewHolder>(){
+class ProfileCardAdapter (val context: Context, val CardList: List<ProfileCard>)
+    : Adapter<com.project.findhere.ProfileCardAdapter.ViewHolder>(){
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
             val cardImage : ImageView = view.findViewById(R.id.profileImage)
             val cardContent : TextView = view.findViewById(R.id.profileContent)
             val cardSelection : TextView = view.findViewById(R.id.profileSelection)
+            val cardView : MaterialCardView = view.findViewById(R.id.xmlprofilecard)
         }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -23,11 +25,15 @@ class CardAdapter (val context: Context,val CardList: List<ProfileCard>)
         return ViewHolder(view)
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val card = CardList[position]
         holder.cardContent.text = card.content
         holder.cardSelection.text = card.selection
         Glide.with(context).load(card.imageId).into(holder.cardImage)
+        holder.cardView.setOnClickListener {
+            //if holder.itemView.acti
+        }
     }
 
     override fun getItemCount() = CardList.size
