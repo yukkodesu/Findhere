@@ -4,11 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FoundFragment">
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/tab_found" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvFound"
         android:layout_width="match_parent"
