@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/foundcard"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -45,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
-            android:text="TextView"
+            android:text="招领标题"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintStart_toEndOf="@+id/cardavatar"
             app:layout_constraintTop_toBottomOf="@+id/cardimage" />
@@ -65,20 +66,40 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginStart="80dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintStart_toEndOf="@+id/cardusername"
-            app:layout_constraintTop_toBottomOf="@+id/cardtitle"
+            app:layout_constraintTop_toBottomOf="@id/cardimage"
             app:srcCompat="@drawable/ic_baseline_location_on_24" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_marginStart="81dp"
+            android:layout_marginTop="6dp"
+            android:src="@drawable/ic_baseline_calendar_today_24"
+            app:layout_constraintStart_toEndOf="@+id/cardusername"
+            app:layout_constraintTop_toBottomOf="@+id/cardloc" />
+
+        <TextView
+            android:id="@+id/cardlosttime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="6dp"
+            android:text="找到的时间"
+            app:layout_constraintStart_toEndOf="@+id/imageView"
+            app:layout_constraintTop_toBottomOf="@+id/cardloc" />
 
         <TextView
             android:id="@+id/cardloc"
             android:layout_width="wrap_content"
             android:layout_height="20dp"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="3dp"
-            android:text="TextView"
+            android:layout_marginTop="15dp"
+            android:text="找到地点"
             app:layout_constraintStart_toEndOf="@+id/cardlocationimg"
-            app:layout_constraintTop_toBottomOf="@+id/cardtitle" />
+            app:layout_constraintTop_toBottomOf="@id/cardimage" />
 
         <Button
             android:id="@+id/cardarrowBtn"
@@ -148,7 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:text="联系地址"
+                android:text="联系邮箱"
                 app:layout_constraintStart_toEndOf="@id/mailIcon"
                 app:layout_constraintTop_toBottomOf="@id/mailNumber" />
 
