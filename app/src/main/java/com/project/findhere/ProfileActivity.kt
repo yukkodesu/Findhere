@@ -33,7 +33,8 @@ class ProfileActivity : AppCompatActivity() {
                     initCards(thisuser,auth)
                     initRv()
                     val profile_avatar : CircleImageView = findViewById(R.id.profileavatar)
-                    Glide.with(this).load(thisuser.avatarurl).into(profile_avatar)
+                    if(thisuser.avatarurl != "")
+                        Glide.with(this).load(thisuser.avatarurl).into(profile_avatar)
                 } else {
                     Log.d("ProfileActivity", "get userinfo failed with no userid exist")
                 }
