@@ -32,4 +32,6 @@
     <string name="description">简要描述</string>
     <string name="setQuestion">设置安保问题</string>
     <string name="setAnswer">设置答案</string>
+    <string name="mainSearch">搜索</string>
+    <string name="brief_description">简要描述:</string>
 </resources>

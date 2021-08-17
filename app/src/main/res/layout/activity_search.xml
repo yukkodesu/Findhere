@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SearchActivity">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/search_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/search_backButton"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:drawableLeft="@drawable/ic_baseline_arrow_back_24"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/search_toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/search_toolbar"
+        app:layout_constraintHorizontal_bias="0.015"
+        app:layout_constraintStart_toStartOf="@+id/search_toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/search_CL"
+        android:layout_width="280dp"
+        android:layout_height="42dp"
+        android:background="@drawable/textview_border"
+        app:layout_constraintBottom_toBottomOf="@+id/search_toolbar"
+        app:layout_constraintEnd_toEndOf="@+id/search_goSearch"
+        app:layout_constraintStart_toStartOf="@+id/search_backButton"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:layout_width="270dp"
+            android:layout_height="40dp"
+            android:background="@color/white"
+            android:textCursorDrawable="@drawable/my_cursor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/search_goSearch"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:drawableLeft="@drawable/ic_baseline_search_white_24"
+        android:paddingLeft="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/search_toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.982"
+        app:layout_constraintStart_toStartOf="@+id/search_toolbar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search_toolbar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

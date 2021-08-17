@@ -27,7 +27,9 @@
         <entry key="..\:/Findhere/app/src/main/res/drawable/ic_baseline_collection_24.xml" value="0.38229166666666664" />
         <entry key="..\:/Findhere/app/src/main/res/drawable/ic_baseline_create_24.xml" value="0.38229166666666664" />
         <entry key="..\:/Findhere/app/src/main/res/drawable/ic_baseline_notes_24.xml" value="0.38229166666666664" />
+        <entry key="..\:/Findhere/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.38229166666666664" />
         <entry key="..\:/Findhere/app/src/main/res/drawable/imageview_border.xml" value="0.38229166666666664" />
+        <entry key="..\:/Findhere/app/src/main/res/drawable/my_cursor.xml" value="0.38229166666666664" />
         <entry key="..\:/Findhere/app/src/main/res/drawable/textview_border.xml" value="0.38229166666666664" />
         <entry key="..\:/Findhere/app/src/main/res/layout/activity_add.xml" value="0.33559782608695654" />
         <entry key="..\:/Findhere/app/src/main/res/layout/activity_edit_profile.xml" value="0.33559782608695654" />
@@ -35,11 +37,14 @@
         <entry key="..\:/Findhere/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
         <entry key="..\:/Findhere/app/src/main/res/layout/activity_profile.xml" value="0.33" />
         <entry key="..\:/Findhere/app/src/main/res/layout/activity_register.xml" value="0.25" />
+        <entry key="..\:/Findhere/app/src/main/res/layout/activity_search.xml" value="0.36614583333333334" />
         <entry key="..\:/Findhere/app/src/main/res/layout/fragment_find.xml" value="0.25364583333333335" />
         <entry key="..\:/Findhere/app/src/main/res/layout/fragment_found.xml" value="0.25364583333333335" />
+        <entry key="..\:/Findhere/app/src/main/res/layout/item_findposts.xml" value="0.36614583333333334" />
         <entry key="..\:/Findhere/app/src/main/res/layout/item_posts.xml" value="0.33559782608695654" />
         <entry key="..\:/Findhere/app/src/main/res/layout/main_header.xml" value="0.33559782608695654" />
         <entry key="..\:/Findhere/app/src/main/res/layout/profile_item.xml" value="0.33559782608695654" />
+        <entry key="..\:/Findhere/app/src/main/res/menu/main_menu.xml" value="0.36614583333333334" />
       </map>
     </option>
   </component>

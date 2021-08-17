@@ -42,6 +42,10 @@ class MainActivity : AppCompatActivity() {
                    val intent = Intent(this,ProfileActivity::class.java)
                    startActivity(intent)
                }
+               R.id.mainSearch ->{
+                   val intent = Intent(this,SearchActivity::class.java)
+                   startActivity(intent)
+               }
                R.id.mainQuit -> {
                    FirebaseAuth.getInstance().signOut()
                    val intent = Intent(this,LoginActivity::class.java)

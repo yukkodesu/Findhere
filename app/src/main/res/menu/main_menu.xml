@@ -12,13 +12,9 @@
             android:icon="@drawable/ic_baseline_person_24"
             android:title="@string/main_profile"/>
         <item
-            android:id="@+id/mainCollection"
-            android:icon="@drawable/ic_baseline_collection_24"
-            android:title="@string/main_collection"/>
-        <item
-            android:id="@+id/mainSettings"
-            android:icon="@drawable/ic_baseline_settings_24"
-            android:title="@string/main_settings"/>
+            android:id="@+id/mainSearch"
+            android:icon="@drawable/ic_baseline_search_24"
+            android:title="@string/mainSearch"/>
     </group>
     <group
         android:id="@+id/group2"

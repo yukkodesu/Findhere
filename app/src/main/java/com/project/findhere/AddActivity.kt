@@ -83,8 +83,18 @@ class AddActivity : AppCompatActivity() {
 
         btnDatePicker.setOnClickListener{
             DatePickerDialog(this,datePicker,myCalendar.get(Calendar.YEAR),myCalendar.get(Calendar.MONTH),myCalendar.get(Calendar.DAY_OF_MONTH)).show()
+        }//
+
+        //add submit button
+        val btnSubmit : MaterialButton = findViewById(R.id.add_submit)
+        btnSubmit.setOnClickListener {
+            handleSubmitButtonClick()
         }
 
+    }
+
+    private fun handleSubmitButtonClick() {
+        TODO("Not yet implemented")
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

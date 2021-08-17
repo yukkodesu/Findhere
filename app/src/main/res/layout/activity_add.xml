@@ -42,7 +42,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/add_check"
+        android:id="@+id/add_submit"
         android:layout_width="42dp"
         android:layout_height="42dp"
         android:drawableLeft="@drawable/ic_baseline_check_24"
@@ -57,136 +57,112 @@
         android:id="@+id/add_button_takePhoto"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="@string/takePhoto"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.205"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_toolbar" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/add_btnDatePicker"
+        app:layout_constraintTop_toBottomOf="@+id/add_CL"
+        app:layout_constraintVertical_bias="0.048" />
 
     <Button
         android:id="@+id/add_button_fromAlbum"
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:text="@string/chooseFromAlbum"
+        app:layout_constraintBottom_toBottomOf="@+id/add_button_takePhoto"
+        app:layout_constraintStart_toStartOf="@+id/add_tvDate"
+        app:layout_constraintTop_toTopOf="@+id/add_button_takePhoto"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/add_textInputLayout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="320dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="8dp"
+        android:hint="@string/place"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/add_button_takePhoto"
-        app:layout_constraintTop_toTopOf="@+id/add_button_takePhoto" />
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/add_btnDatePicker">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_textInputET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/brief_description"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/add_CL"
+        app:layout_constraintStart_toStartOf="@+id/add_CL" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/add_CL"
+        android:background="@drawable/textview_border"
+        android:layout_width="320dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintEnd_toEndOf="@+id/add_textInputLayout"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/add_textInputLayout"
+        app:layout_constraintTop_toBottomOf="@+id/add_textInputLayout">
+
+        <EditText
+            android:layout_width="310dp"
+            android:layout_height="190dp"
+            android:layout_margin="5dp"
+            android:background="@color/white"
+            android:gravity="top"
+            android:textSize="16sp"
+            android:textCursorDrawable="@drawable/my_cursor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/add_imageView"
         android:layout_width="320dp"
         android:layout_height="200dp"
-        android:layout_marginTop="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
-        app:layout_constraintStart_toStartOf="parent"
+        android:background="@drawable/imageview_border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/add_CL"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/add_CL"
         app:layout_constraintTop_toBottomOf="@+id/add_button_takePhoto"
-        android:background="@drawable/imageview_border" />
+        app:layout_constraintVertical_bias="0.226" />
 
     <Button
         android:id="@+id/add_btnDatePicker"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
         android:text="@string/DatePicker"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.28"
+        app:layout_constraintHorizontal_bias="0.276"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/add_imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/add_toolbar"
+        app:layout_constraintVertical_bias="0.022" />
 
     <TextView
         android:id="@+id/add_tvDate"
         android:layout_width="100dp"
         android:layout_height="37dp"
         android:background="@drawable/textview_border"
-        android:text="@string/Date"
         android:gravity="center"
         android:scaleType="centerCrop"
+        android:text="@string/Date"
         app:layout_constraintBottom_toBottomOf="@+id/add_btnDatePicker"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.32"
+        app:layout_constraintHorizontal_bias="0.325"
         app:layout_constraintStart_toEndOf="@+id/add_btnDatePicker"
-        app:layout_constraintTop_toTopOf="@+id/add_btnDatePicker" />
+        app:layout_constraintTop_toTopOf="@+id/add_btnDatePicker"
+        app:layout_constraintVertical_bias="0.5" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/add_textInputLayout1"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="320dp"
-        android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/add_imageView"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/add_imageView"
-        app:layout_constraintTop_toBottomOf="@+id/add_imageView"
-        app:layout_constraintVertical_bias="0.16"
-        android:hint="@string/place">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/add_textInputEditText1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/add_textInputLayout2"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="320dp"
-        android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/add_textInputLayout1"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/add_textInputLayout1"
-        app:layout_constraintTop_toBottomOf="@+id/add_textInputLayout1"
-        app:layout_constraintVertical_bias="0.061"
-        android:hint="@string/description">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/add_textInputEditText2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/add_textInputLayout3"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="320dp"
-        android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/add_textInputLayout2"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/add_textInputLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/add_textInputLayout2"
-        app:layout_constraintVertical_bias="0.09"
-        android:hint="@string/setQuestion">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/add_textInputEditText3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/add_textInputLayout4"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="320dp"
-        android:layout_height="60dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/add_textInputLayout3"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/add_textInputLayout3"
-        app:layout_constraintTop_toBottomOf="@+id/add_textInputLayout3"
-        app:layout_constraintVertical_bias="0.175"
-        android:hint="@string/setAnswer">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/add_textInputEditText4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

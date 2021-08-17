@@ -13,7 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Findhere">
         <activity
-            android:name=".RegisterActivity"/>
+            android:name=".SearchActivity"
+            android:exported="true" />
+        <activity android:name=".RegisterActivity" />
         <activity android:name=".AddActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".LoginActivity">
