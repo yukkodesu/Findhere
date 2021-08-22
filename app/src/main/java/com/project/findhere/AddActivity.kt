@@ -11,14 +11,13 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.FileProvider
 import com.bumptech.glide.Glide
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.textfield.TextInputEditText
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
@@ -89,12 +88,29 @@ class AddActivity : AppCompatActivity() {
         val btnSubmit : MaterialButton = findViewById(R.id.add_submit)
         btnSubmit.setOnClickListener {
             handleSubmitButtonClick()
-        }
+        }//
 
     }
 
     private fun handleSubmitButtonClick() {
-        TODO("Not yet implemented")
+
+        val tvDate : TextView = findViewById(R.id.add_tvDate)
+        if (tvDate.text.isBlank()){
+            Toast.makeText(this,"日期不能为空",Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val tvPlace : TextInputEditText = findViewById(R.id.add_PlaceET)
+        if (tvPlace.text?.isBlank() == true){
+            Toast.makeText(this,"地点不能为空",Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val tvContent : EditText = findViewById(R.id.add_ContentET)
+        if (tvContent.text.isBlank()){
+            Toast.makeText(this,"描述不能为空",Toast.LENGTH_SHORT).show()
+            return
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
