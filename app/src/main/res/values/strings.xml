@@ -34,4 +34,6 @@
     <string name="setAnswer">设置答案</string>
     <string name="mainSearch">搜索</string>
     <string name="brief_description">简要描述:</string>
+    <string name="yes">确认</string>、
+    <string name="no">取消</string>
 </resources>
