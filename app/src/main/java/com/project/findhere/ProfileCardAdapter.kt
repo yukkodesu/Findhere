@@ -14,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import com.bumptech.glide.Glide
 import com.google.android.material.card.MaterialCardView
+import com.google.firebase.firestore.FirebaseFirestore
 
-class ProfileCardAdapter (val context: Context, val CardList: List<ProfileCard>)
+class ProfileCardAdapter (val context: Context, val CardList: List<ProfileCard>,
+                          private val listener : OnCardClick, private val firebasedb : FirebaseFirestore)
     : Adapter<com.project.findhere.ProfileCardAdapter.ViewHolder>(){
         inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view){
             val cardImage : ImageView = view.findViewById(R.id.profileImage)
@@ -30,30 +32,22 @@ class ProfileCardAdapter (val context: Context, val CardList: List<ProfileCard>)
     }
 
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val card = CardList[position]
         holder.cardContent.text = card.content
         holder.cardSelection.text = card.selection
         Glide.with(context).load(card.imageId).into(holder.cardImage)
         holder.cardView.setOnLongClickListener {
-            val builder: AlertDialog.Builder? = context?.let {
-                AlertDialog.Builder(it)
-            }
-            builder?.setView(R.layout.profile_alertdialog)
-                ?.setPositiveButton(R.string.yes,
-                    DialogInterface.OnClickListener { dialog, id ->
-                        Log.d("ProFileCard","hit ${position}")
-                    })
-                ?.setNegativeButton(R.string.no,
-                    DialogInterface.OnClickListener { dialog, id ->
-                        // User cancelled the dialog
-                    })
-            val dialog: AlertDialog? = builder?.create()
-            dialog?.show()
+            if(listener.editable){ listener.clickAction(position,firebasedb) }
             true
         }
     }
 
     override fun getItemCount() = CardList.size
 
+    interface OnCardClick{
+        fun clickAction(position: Int,firebasedb: FirebaseFirestore)
+        var editable : Boolean
+    }
 }
