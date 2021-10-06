@@ -7,4 +7,5 @@ data class FindPost(var user: User? = null,
                     var lostmonth : String = "",
                     var lostday : String ="",
                     var imgurl : String = "",
+                    var place : String = "",
                     var description : String = "")
