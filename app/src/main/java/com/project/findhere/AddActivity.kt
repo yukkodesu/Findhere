@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.media.ExifInterface
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -26,6 +27,7 @@ import com.project.findhere.models.User
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.jar.Manifest
 
 class AddActivity : AppCompatActivity() {
 
@@ -49,6 +51,7 @@ class AddActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
 
         //get user&id
+
         fireStoreDb = FirebaseFirestore.getInstance()
         fireStoreDb.collection("users")
             .document(firebaseAuth.currentUser?.uid as String)
@@ -62,7 +65,7 @@ class AddActivity : AppCompatActivity() {
                 Log.i(TAG,"Failure fetching signed in user",exception)
             }
         signedInUserId = firebaseAuth.currentUser?.uid as String
-        //get user&id
+        //
 
         //add backButton
 
@@ -72,19 +75,24 @@ class AddActivity : AppCompatActivity() {
         }//
         
         //addPhotoPicker
-
         val takePhotoBtn: Button = findViewById(R.id.add_button_takePhoto)
         takePhotoBtn.setOnClickListener{
-            outputImage = File(externalCacheDir,"output_image.jpg")
-            if (outputImage.exists()){
-                outputImage.delete()
+            if (shouldShowRequestPermissionRationale(android.Manifest.permission.CAMERA)){
+                requestPermissions(arrayOf<String>(android.Manifest.permission.CAMERA),0)
             }
-            outputImage.createNewFile()
-            imageUri = FileProvider.getUriForFile(this,"com.project.findhere",outputImage)
+            else{
+                outputImage = File(externalCacheDir, "output_image.jpg")
+                if (outputImage.exists()) {
+                    outputImage.delete()
+                }
+                outputImage.createNewFile()
+                imageUri = FileProvider.getUriForFile(this, "com.project.findhere", outputImage)
 
-            val intent = Intent("android.media.action.IMAGE_CAPTURE")
-            intent.putExtra(MediaStore.EXTRA_OUTPUT,imageUri)
-            startActivityForResult(intent,takePhoto)
+                val intent = Intent("android.media.action.IMAGE_CAPTURE")
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri)
+                startActivityForResult(intent, takePhoto)
+            }
+
         }
 
         val fromAlbumBtn : Button = findViewById(R.id.add_button_fromAlbum)
@@ -127,19 +135,16 @@ class AddActivity : AppCompatActivity() {
         val tvDate : TextView = findViewById(R.id.add_tvDate)
         if (tvDate.text.isBlank()){
             Toast.makeText(this,"日期不能为空",Toast.LENGTH_SHORT).show()
-            return
         }
 
         val tvPlace : TextInputEditText = findViewById(R.id.add_PlaceET)
         if (tvPlace.text?.isBlank() == true){
             Toast.makeText(this,"地点不能为空",Toast.LENGTH_SHORT).show()
-            return
         }
 
         val tvContent : EditText = findViewById(R.id.add_ContentET)
         if (tvContent.text.isBlank()){
             Toast.makeText(this,"描述不能为空",Toast.LENGTH_SHORT).show()
-            return
         }
 
         val btnSubmit : MaterialButton = findViewById(R.id.add_submit)

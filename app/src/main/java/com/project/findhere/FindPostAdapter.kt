@@ -39,6 +39,10 @@ class FindPostAdapter (val context : Context, private val findPosts : List<FindP
                     cardarrowBtn.setBackgroundResource(R.drawable.ic_baseline_keyboard_arrow_down_24)
                 }
             }
+            val cardfinddate : AppCompatTextView = itemView.findViewById(R.id.findtime)
+            cardfinddate.text = findPost.lostdate
+            val cardplace : AppCompatTextView = itemView.findViewById(R.id.findcardloc)
+            cardplace.text = findPost.place
         }
     }
 
