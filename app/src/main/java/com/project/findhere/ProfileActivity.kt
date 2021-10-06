@@ -2,7 +2,6 @@ package com.project.findhere
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.AdapterView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
@@ -18,15 +17,16 @@ import de.hdodenhof.circleimageview.CircleImageView
 
 class ProfileActivity : AppCompatActivity() {
 
-    var isEditable = false
+    private var isEditable = false
+    private val firebaseDb = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+    private val documentRef = firebaseDb.collection("users").document("${auth.currentUser?.uid}")
 
     private val cardList = ArrayList<ProfileCard>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
-        val firebaseDb = FirebaseFirestore.getInstance()
-        val auth = FirebaseAuth.getInstance()
-        val documentRef = firebaseDb.collection("users").document("${auth.currentUser?.uid}")
+
         documentRef.get()
             .addOnSuccessListener { document ->
                 if (document != null) {
@@ -44,23 +44,37 @@ class ProfileActivity : AppCompatActivity() {
         button1.setOnClickListener(){
             onBackPressed()
         }
-
-        val button2 : FloatingActionButton = findViewById(R.id.profile_fab)
-        val titletext : TextView = findViewById(R.id.profiletitletextview)
-        button2.setOnClickListener {
-            // TODO
-            button2.setImageResource(R.drawable.ic_baseline_check_24)
-            titletext.setText("点击信息卡牌修改个人信息")
-            isEditable = true
-        }
-
     }
 
     private fun initRv(){
         val layoutManager = GridLayoutManager(this, 2)
         val recyclerView: RecyclerView = findViewById(R.id.profile_recyclerview)
         recyclerView.layoutManager = layoutManager
-        val adapter = ProfileCardAdapter(this, cardList)
+        val listener = object : ProfileCardAdapter.OnCardClick{
+            override fun clickAction(position: Int, firebasedb : FirebaseFirestore) {
+                Log.d("ProfileActivity","OKFine")
+            }
+            override var editable = isEditable
+        }
+
+        val button2 : FloatingActionButton = findViewById(R.id.profile_fab)
+        val titletext : TextView = findViewById(R.id.profiletitletextview)
+        button2.setOnClickListener {
+            // TODO
+            if(!isEditable){
+                button2.setImageResource(R.drawable.ic_baseline_check_24)
+                titletext.setText(R.string.pressCardtoEdit)
+                listener.editable = true
+                isEditable = true
+            }
+            else{
+                button2.setImageResource(R.drawable.ic_baseline_create_24)
+                titletext.setText(R.string.profile_center)
+                listener.editable = false
+                isEditable = false
+            }
+        }
+        val adapter = ProfileCardAdapter(this, cardList,listener,firebaseDb)
         recyclerView.adapter = adapter
     }
 
