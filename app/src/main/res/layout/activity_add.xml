@@ -14,7 +14,7 @@
         android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/add_backButton"
@@ -33,8 +33,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/upload"
-        android:textSize="20sp"
         android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="@+id/add_toolbar"
         app:layout_constraintEnd_toEndOf="@+id/add_toolbar"
         app:layout_constraintHorizontal_bias="0.077"
@@ -76,17 +76,33 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/add_textInputLayout"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="320dp"
+        android:layout_width="140dp"
         android:layout_height="60dp"
         android:layout_marginTop="8dp"
         android:hint="@string/place"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.505"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/add_CL"
         app:layout_constraintTop_toBottomOf="@+id/add_btnDatePicker">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/add_PlaceET"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/add_textInputLayout2"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="140dp"
+        android:layout_height="60dp"
+        android:hint="@string/subject_name"
+
+        app:layout_constraintBottom_toBottomOf="@+id/add_textInputLayout"
+        app:layout_constraintEnd_toEndOf="@+id/add_CL"
+        app:layout_constraintTop_toTopOf="@+id/add_textInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/add_NameET"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -102,13 +118,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/add_CL"
-        android:background="@drawable/textview_border"
         android:layout_width="320dp"
         android:layout_height="200dp"
         android:layout_marginTop="28dp"
-        app:layout_constraintEnd_toEndOf="@+id/add_textInputLayout"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/add_textInputLayout"
+        android:background="@drawable/textview_border"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/add_textInputLayout">
 
         <EditText
@@ -118,8 +134,8 @@
             android:layout_margin="5dp"
             android:background="@color/white"
             android:gravity="top"
-            android:textSize="16sp"
             android:textCursorDrawable="@drawable/my_cursor"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -144,9 +160,7 @@
         android:layout_height="wrap_content"
         android:text="@string/DatePicker"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.276"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/add_textInputLayout"
         app:layout_constraintTop_toBottomOf="@+id/add_toolbar"
         app:layout_constraintVertical_bias="0.022" />
 
@@ -158,11 +172,16 @@
         android:gravity="center"
         android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="@+id/add_btnDatePicker"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.325"
-        app:layout_constraintStart_toEndOf="@+id/add_btnDatePicker"
+        app:layout_constraintStart_toStartOf="@+id/add_textInputLayout2"
         app:layout_constraintTop_toTopOf="@+id/add_btnDatePicker"
         app:layout_constraintVertical_bias="0.5" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="205dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -147,6 +147,11 @@ class AddActivity : AppCompatActivity() {
             Toast.makeText(this,"描述不能为空",Toast.LENGTH_SHORT).show()
         }
 
+        val tvName : TextInputEditText = findViewById(R.id.add_NameET)
+        if(tvName.text?.isBlank() == true){
+            Toast.makeText(this,"物品名称不能为空",Toast.LENGTH_SHORT).show()
+        }
+
         val btnSubmit : MaterialButton = findViewById(R.id.add_submit)
         btnSubmit.isEnabled = false
         val photoReference = storageReference.child("images/${System.currentTimeMillis()}-photo.jpg")
@@ -163,6 +168,7 @@ class AddActivity : AppCompatActivity() {
                     signedInUserId,
                     System.currentTimeMillis(),
                     tvDate.text.toString(),
+                    tvName.text.toString(),
                     downloadUrlTask.result.toString(),
                     tvPlace.text.toString(),
                     tvContent.text.toString())
