@@ -16,8 +16,8 @@
             android:name=".SearchActivity"
             android:exported="true" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".AddActivity" />
         <activity android:name=".ProfileActivity" />
+        <activity android:name=".AddActivity"/>
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
