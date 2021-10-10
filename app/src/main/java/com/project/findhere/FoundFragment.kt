@@ -59,9 +59,7 @@ class FoundFragment : Fragment() {
             }
             val postList = snapshot.toObjects(FoundPost::class.java)
             foundPosts.clear()
-            repeat(8) {
-                foundPosts.addAll(postList)
-            }
+            foundPosts.addAll(postList)
             adapter.notifyDataSetChanged()
             for (post in postList) {
                 Log.d("FoundFragment", "${post}")

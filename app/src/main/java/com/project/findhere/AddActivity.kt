@@ -12,6 +12,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.Settings
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.project.findhere.models.FindPost
 import com.project.findhere.models.FoundPost
 import com.project.findhere.models.User
 import java.io.File
@@ -49,6 +51,10 @@ class AddActivity : AppCompatActivity() {
         setContentView(R.layout.activity_add)
         storageReference = FirebaseStorage.getInstance().reference
         firebaseAuth = FirebaseAuth.getInstance()
+
+        val selectPosition = intent.getSerializableExtra("TabSelected") as Int
+
+        Log.d("SelectedPosision","${selectPosition}")
 
         //get user&id
 
@@ -124,32 +130,41 @@ class AddActivity : AppCompatActivity() {
         //add submit button
         val btnSubmit : MaterialButton = findViewById(R.id.add_submit)
         btnSubmit.setOnClickListener {
-            handleSubmitButtonClick()
+            if (selectPosition == 0){
+                handleFoundBtnClick()
+            }
+            else{
+                handleFindBtnClick()
+            }
         }//
 
     }
 
-    private fun handleSubmitButtonClick() {
+    private fun handleFoundBtnClick() {
 
         val imageView : ImageView = findViewById(R.id.add_imageView)
         val tvDate : TextView = findViewById(R.id.add_tvDate)
         if (tvDate.text.isBlank()){
             Toast.makeText(this,"日期不能为空",Toast.LENGTH_SHORT).show()
+            return
         }
 
         val tvPlace : TextInputEditText = findViewById(R.id.add_PlaceET)
         if (tvPlace.text?.isBlank() == true){
             Toast.makeText(this,"地点不能为空",Toast.LENGTH_SHORT).show()
+            return
         }
 
         val tvContent : EditText = findViewById(R.id.add_ContentET)
         if (tvContent.text.isBlank()){
             Toast.makeText(this,"描述不能为空",Toast.LENGTH_SHORT).show()
+            return
         }
 
         val tvName : TextInputEditText = findViewById(R.id.add_NameET)
         if(tvName.text?.isBlank() == true){
             Toast.makeText(this,"物品名称不能为空",Toast.LENGTH_SHORT).show()
+            return
         }
 
         val btnSubmit : MaterialButton = findViewById(R.id.add_submit)
@@ -173,6 +188,69 @@ class AddActivity : AppCompatActivity() {
                     tvPlace.text.toString(),
                     tvContent.text.toString())
                 fireStoreDb.collection("foundposts").add(post)
+            }.addOnCompleteListener { postCreationTask ->
+                btnSubmit.isEnabled = true
+                if(!postCreationTask.isSuccessful){
+                    Log.e(TAG,"Exception during Firebase operations",postCreationTask.exception)
+                    Toast.makeText(this,"上传失败",Toast.LENGTH_SHORT).show()
+                }
+                tvContent.text.clear()
+                tvPlace.text?.clear()
+                imageView.setImageResource(0)
+                Toast.makeText(this,"上传成功",Toast.LENGTH_SHORT).show()
+                val intent = Intent(this,MainActivity::class.java)
+                startActivity(intent)
+            }
+    }
+
+    private fun handleFindBtnClick(){
+
+        val imageView : ImageView = findViewById(R.id.add_imageView)
+        val tvDate : TextView = findViewById(R.id.add_tvDate)
+        if (tvDate.text.isBlank()){
+            Toast.makeText(this,"日期不能为空",Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val tvPlace : TextInputEditText = findViewById(R.id.add_PlaceET)
+        if (tvPlace.text?.isBlank() == true){
+            Toast.makeText(this,"地点不能为空",Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val tvContent : EditText = findViewById(R.id.add_ContentET)
+        if (tvContent.text.isBlank()){
+            Toast.makeText(this,"描述不能为空",Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val tvName : TextInputEditText = findViewById(R.id.add_NameET)
+        if(tvName.text?.isBlank() == true){
+            Toast.makeText(this,"物品名称不能为空",Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val btnSubmit : MaterialButton = findViewById(R.id.add_submit)
+        btnSubmit.isEnabled = false
+        val photoReference = storageReference.child("images/${System.currentTimeMillis()}-photo.jpg")
+        // upload photo to firebase
+        photoReference.putFile(imageUri)
+            .continueWithTask { photoUploadTask ->
+                Log.i(TAG,"uploaded bytes: ${photoUploadTask.result?.bytesTransferred}")
+                //retrieve image url of the uploaded image
+                photoReference.downloadUrl
+            }.continueWithTask { downloadUrlTask ->
+                // create a post object with the image URL and add that to the posts collection
+                val post = FindPost(
+                    signedInUser,
+                    signedInUserId,
+                    System.currentTimeMillis(),
+                    tvDate.text.toString(),
+                    tvName.text.toString(),
+                    downloadUrlTask.result.toString(),
+                    tvPlace.text.toString(),
+                    tvContent.text.toString())
+                fireStoreDb.collection("findposts").add(post)
             }.addOnCompleteListener { postCreationTask ->
                 btnSubmit.isEnabled = true
                 if(!postCreationTask.isSuccessful){

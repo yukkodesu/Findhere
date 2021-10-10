@@ -84,9 +84,12 @@ class MainActivity : AppCompatActivity() {
         // end setup viewpager
 
         //add floatButton
+        tabs.selectedTabPosition
         val fab : FloatingActionButton = findViewById(R.id.main_fab)
         fab.setOnClickListener{
-            val intent = Intent(this,AddActivity::class.java)
+            val intent = Intent(this,AddActivity::class.java).apply {
+                putExtra("TabSelected",tabs.selectedTabPosition)
+            }
             startActivity(intent)
         }
         //floatButton end
