@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="15dp"
-            android:text="招领标题"
+            android:text="@string/foundtitle"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintStart_toEndOf="@+id/cardavatar"
             app:layout_constraintTop_toBottomOf="@+id/cardimage" />
@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="3dp"
-            android:text="TextView"
+            android:text="@string/foundtext"
             app:layout_constraintStart_toEndOf="@+id/cardavatar"
             app:layout_constraintTop_toBottomOf="@+id/cardtitle" />
 
@@ -87,7 +87,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
-            android:text="找到的时间"
+            android:text="@string/foundtime"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/cardloc" />
 
@@ -97,7 +97,7 @@
             android:layout_height="20dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="15dp"
-            android:text="找到地点"
+            android:text="@string/foundplace"
             app:layout_constraintStart_toEndOf="@+id/cardlocationimg"
             app:layout_constraintTop_toBottomOf="@id/cardimage" />
 
@@ -161,7 +161,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="15dp"
-                android:text="workemail@gmail.com"
+                android:text="@string/foundemail"
                 app:layout_constraintStart_toEndOf="@id/mailIcon"
                 app:layout_constraintTop_toBottomOf="@id/cardscrollview" />
 
@@ -169,7 +169,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:text="联系邮箱"
+                android:text="@string/contextemail"
                 app:layout_constraintStart_toEndOf="@id/mailIcon"
                 app:layout_constraintTop_toBottomOf="@id/mailNumber" />
 

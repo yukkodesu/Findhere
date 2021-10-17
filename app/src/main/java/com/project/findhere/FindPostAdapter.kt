@@ -45,6 +45,8 @@ class FindPostAdapter (val context : Context, private val findPosts : List<FindP
             cardplace.text = findPost.place
             val cardname : AppCompatTextView = itemView.findViewById(R.id.findcardtitle)
             cardname.text = findPost.name
+            val cardemail : AppCompatTextView = itemView.findViewById(R.id.findmailNumber)
+            cardemail.text = findPost.user?.display_email
         }
     }
 

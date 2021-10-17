@@ -85,5 +85,6 @@ class ProfileActivity : AppCompatActivity() {
         cardList.add(ProfileCard("QQ", "${user.qq}", R.drawable.ic_baseline_connect_without_contact_24))
         cardList.add(ProfileCard("邮箱", "${auth.currentUser?.email}", R.drawable.ic_baseline_local_post_office_24))
         cardList.add(ProfileCard("年级", "${user.grade}", R.drawable.ic_baseline_calendar_today_24))
+        cardList.add(ProfileCard("手机号","${user.phone}",R.drawable.ic_baseline_phone_24))
     }
 }
