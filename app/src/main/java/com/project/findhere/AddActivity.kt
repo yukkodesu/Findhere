@@ -148,7 +148,7 @@ class AddActivity : AppCompatActivity() {
                 }
                 else{
                     Log.d("AddActivity","CAMERA DENIED")
-                    Toast.makeText(baseContext,"未允许使用相机",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this,"未允许使用相机",Toast.LENGTH_SHORT).show()
                 }
             }
         }

@@ -14,6 +14,15 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.toObject
 import com.project.findhere.models.User
 import de.hdodenhof.circleimageview.CircleImageView
+import android.content.DialogInterface
+import android.text.InputType
+import android.view.LayoutInflater
+
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.core.view.marginLeft
+
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -21,8 +30,10 @@ class ProfileActivity : AppCompatActivity() {
     private val firebaseDb = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
     private val documentRef = firebaseDb.collection("users").document("${auth.currentUser?.uid}")
-
     private val cardList = ArrayList<ProfileCard>()
+    private var AlertDialogInput = ""
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
@@ -31,60 +42,95 @@ class ProfileActivity : AppCompatActivity() {
             .addOnSuccessListener { document ->
                 if (document != null) {
                     val thisuser = document.toObject<User>()!!
-                    initCards(thisuser,auth)
+                    initCards(thisuser, auth)
                     initRv()
-                    val profile_avatar : CircleImageView = findViewById(R.id.profileavatar)
-                    if(thisuser.avatarurl != "")
+                    val profile_avatar: CircleImageView = findViewById(R.id.profileavatar)
+                    if (thisuser.avatarurl != "")
                         Glide.with(this).load(thisuser.avatarurl).into(profile_avatar)
                 } else {
                     Log.d("ProfileActivity", "get userinfo failed with no userid exist")
                 }
             }
-        val button1 : MaterialButton = findViewById(R.id.profile_backButton)
-        button1.setOnClickListener(){
+        val button1: MaterialButton = findViewById(R.id.profile_backButton)
+        button1.setOnClickListener() {
             onBackPressed()
         }
     }
 
-    private fun initRv(){
+    private fun initRv() {
         val layoutManager = GridLayoutManager(this, 2)
         val recyclerView: RecyclerView = findViewById(R.id.profile_recyclerview)
         recyclerView.layoutManager = layoutManager
-        val listener = object : ProfileCardAdapter.OnCardClick{
-            override fun clickAction(position: Int, firebasedb : FirebaseFirestore) {
-                Log.d("ProfileActivity","OKFine")
+        val listener = object : ProfileCardAdapter.OnCardClick {
+            override fun clickAction(position: Int, firebasedb: FirebaseFirestore) {
+                Log.d("ProfileActivity", "OKFine")
+                // TODO
+                handleProfileCardClick()
             }
+
             override var editable = isEditable
         }
 
-        val button2 : FloatingActionButton = findViewById(R.id.profile_fab)
-        val titletext : TextView = findViewById(R.id.profiletitletextview)
+        val button2: FloatingActionButton = findViewById(R.id.profile_fab)
+        val titletext: TextView = findViewById(R.id.profiletitletextview)
         button2.setOnClickListener {
             // TODO
-            if(!isEditable){
+            if (!isEditable) {
                 button2.setImageResource(R.drawable.ic_baseline_check_24)
                 titletext.setText(R.string.pressCardtoEdit)
                 listener.editable = true
                 isEditable = true
-            }
-            else{
+            } else {
                 button2.setImageResource(R.drawable.ic_baseline_create_24)
                 titletext.setText(R.string.profile_center)
                 listener.editable = false
                 isEditable = false
             }
         }
-        val adapter = ProfileCardAdapter(this, cardList,listener,firebaseDb)
+        val adapter = ProfileCardAdapter(this, cardList, listener, firebaseDb)
         recyclerView.adapter = adapter
     }
 
-    private fun initCards(user : User,auth : FirebaseAuth) {
+    private fun initCards(user: User, auth: FirebaseAuth) {
         cardList.clear()
-        cardList.add(ProfileCard("账号", "${auth.currentUser?.email}", R.drawable.ic_baseline_person1_24))
+        cardList.add(
+            ProfileCard(
+                "账号",
+                "${auth.currentUser?.email}",
+                R.drawable.ic_baseline_person1_24
+            )
+        )
         cardList.add(ProfileCard("用户名", "${user.username}", R.drawable.ic_baseline_notes_24))
-        cardList.add(ProfileCard("QQ", "${user.qq}", R.drawable.ic_baseline_connect_without_contact_24))
-        cardList.add(ProfileCard("邮箱", "${auth.currentUser?.email}", R.drawable.ic_baseline_local_post_office_24))
+        cardList.add(
+            ProfileCard(
+                "QQ",
+                "${user.qq}",
+                R.drawable.ic_baseline_connect_without_contact_24
+            )
+        )
+        cardList.add(
+            ProfileCard(
+                "邮箱",
+                "${auth.currentUser?.email}",
+                R.drawable.ic_baseline_local_post_office_24
+            )
+        )
         cardList.add(ProfileCard("年级", "${user.grade}", R.drawable.ic_baseline_calendar_today_24))
         cardList.add(ProfileCard("手机号","${user.phone}",R.drawable.ic_baseline_phone_24))
+    }
+
+    private fun handleProfileCardClick() {
+        val builder: AlertDialog.Builder = AlertDialog.Builder(this)
+        val v = LayoutInflater.from(this).inflate(R.layout.profile_alertdialog,null)
+        builder.setView(v)
+        val edittext : EditText = v.findViewById(R.id.alertdialogtext)
+        builder.setPositiveButton("OK",
+            DialogInterface.OnClickListener { dialog, which -> AlertDialogInput = edittext.text.toString()
+            Log.d("ProfileInfoChangeAlert",AlertDialogInput)
+            })
+        builder.setNegativeButton("Cancel",
+            DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
+
+        builder.show()
     }
 }
