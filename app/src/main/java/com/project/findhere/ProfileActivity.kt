@@ -62,10 +62,9 @@ class ProfileActivity : AppCompatActivity() {
         val recyclerView: RecyclerView = findViewById(R.id.profile_recyclerview)
         recyclerView.layoutManager = layoutManager
         val listener = object : ProfileCardAdapter.OnCardClick {
-            override fun clickAction(position: Int, firebasedb: FirebaseFirestore) {
+            override fun clickAction(position: Int) {
                 Log.d("ProfileActivity", "OKFine")
-                // TODO
-                handleProfileCardClick()
+                handleProfileCardClick(position)
             }
 
             override var editable = isEditable
@@ -74,7 +73,6 @@ class ProfileActivity : AppCompatActivity() {
         val button2: FloatingActionButton = findViewById(R.id.profile_fab)
         val titletext: TextView = findViewById(R.id.profiletitletextview)
         button2.setOnClickListener {
-            // TODO
             if (!isEditable) {
                 button2.setImageResource(R.drawable.ic_baseline_check_24)
                 titletext.setText(R.string.pressCardtoEdit)
@@ -87,7 +85,7 @@ class ProfileActivity : AppCompatActivity() {
                 isEditable = false
             }
         }
-        val adapter = ProfileCardAdapter(this, cardList, listener, firebaseDb)
+        val adapter = ProfileCardAdapter(this, cardList, listener)
         recyclerView.adapter = adapter
     }
 
@@ -119,14 +117,15 @@ class ProfileActivity : AppCompatActivity() {
         cardList.add(ProfileCard("手机号","${user.phone}",R.drawable.ic_baseline_phone_24))
     }
 
-    private fun handleProfileCardClick() {
+    private fun handleProfileCardClick(position : Int) {
         val builder: AlertDialog.Builder = AlertDialog.Builder(this)
         val v = LayoutInflater.from(this).inflate(R.layout.profile_alertdialog,null)
         builder.setView(v)
         val edittext : EditText = v.findViewById(R.id.alertdialogtext)
         builder.setPositiveButton("OK",
             DialogInterface.OnClickListener { dialog, which -> AlertDialogInput = edittext.text.toString()
-            Log.d("ProfileInfoChangeAlert",AlertDialogInput)
+                Log.d("ProfileInfoChangeAlert",AlertDialogInput+"${position}")
+                // TODO Upload
             })
         builder.setNegativeButton("Cancel",
             DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
