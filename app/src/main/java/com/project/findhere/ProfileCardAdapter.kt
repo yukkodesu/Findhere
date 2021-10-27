@@ -39,7 +39,7 @@ class ProfileCardAdapter (val context: Context, val CardList: List<ProfileCard>,
         holder.cardSelection.text = card.selection
         Glide.with(context).load(card.imageId).into(holder.cardImage)
         holder.cardView.setOnLongClickListener {
-            if(listener.editable){ listener.clickAction(position) }
+            if(listener.editable && position != 0){ listener.clickAction(position) }
             true
         }
     }
