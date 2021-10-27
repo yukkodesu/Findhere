@@ -49,4 +49,5 @@
     <string name="findtime">丢失时间</string>
     <string name="findtext">TextView</string>
     <string name="findtitle">寻物标题</string>
+    <string name="information">信息填写</string>
 </resources>

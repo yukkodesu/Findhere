@@ -22,6 +22,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.marginLeft
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 
 
 class ProfileActivity : AppCompatActivity() {
@@ -122,12 +123,33 @@ class ProfileActivity : AppCompatActivity() {
         val v = LayoutInflater.from(this).inflate(R.layout.profile_alertdialog,null)
         builder.setView(v)
         val edittext : EditText = v.findViewById(R.id.alertdialogtext)
-        builder.setPositiveButton("OK",
+        builder.setPositiveButton("确认",
             DialogInterface.OnClickListener { dialog, which -> AlertDialogInput = edittext.text.toString()
                 Log.d("ProfileInfoChangeAlert",AlertDialogInput+"${position}")
-                // TODO Upload
+                documentRef.get()
+                    .addOnSuccessListener { document ->
+                        if (document != null){
+                            if (position == 0){
+                                firebaseDb.collection("users/display_email").add(AlertDialogInput)
+                            }
+                            if (position == 1){
+                                firebaseDb.collection("users/username").add(AlertDialogInput)
+                            }
+                            if (position == 2){
+                                firebaseDb.collection("users/qq").add(AlertDialogInput)
+                            }
+                            if (position == 3){
+                                firebaseDb.collection("users/display_email").add(AlertDialogInput)
+                            }
+                            if (position == 5){
+                                firebaseDb.collection("users/phone").add(AlertDialogInput)
+                            }
+                        }else {
+                            Log.d("ProfileActivity", "get userinfo failed with no userid exist")
+                        }
+                    }
             })
-        builder.setNegativeButton("Cancel",
+        builder.setNegativeButton("取消",
             DialogInterface.OnClickListener { dialog, which -> dialog.cancel() })
 
         builder.show()

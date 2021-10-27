@@ -9,7 +9,7 @@
         android:id="@+id/alertdialogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="@string/information"
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="22sp"
         android:layout_marginTop="10dp"
