@@ -62,10 +62,12 @@
 
         <TextView
             android:id="@+id/findcardtitle"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
+            android:ellipsize="marquee"
+            android:singleLine="true"
             android:text="@string/findtitle"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintStart_toEndOf="@id/findcardavatar"
@@ -94,7 +96,7 @@
 
         <TextView
             android:id="@+id/findtime"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="5dp"
@@ -114,7 +116,7 @@
 
         <TextView
             android:id="@+id/findcardloc"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="20dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="15dp"
@@ -128,12 +130,10 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginTop="20dp"
-            android:layout_marginEnd="5dp"
             android:background="@drawable/ic_baseline_keyboard_arrow_down_24"
             android:backgroundTint="@color/black"
-            android:paddingLeft="11dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.933"
+            app:layout_constraintHorizontal_bias="0.93"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/findcardscrollview" />
 

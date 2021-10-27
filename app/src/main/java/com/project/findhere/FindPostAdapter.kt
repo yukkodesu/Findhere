@@ -28,6 +28,10 @@ class FindPostAdapter (val context : Context, private val findPosts : List<FindP
             val expandview : ConstraintLayout = itemView.findViewById(R.id.findexpandableLayout)
             val cardview : CardView = itemView.findViewById(R.id.findcard)
             val cardarrowBtn : Button = itemView.findViewById(R.id.findcardarrowBtn)
+            val cardimage : ImageView = itemView.findViewById(R.id.findcardimage)
+            if(findPost.imgurl != ""){
+                Glide.with(context).load(findPost.imgurl).into(cardimage)
+            }
             cardarrowBtn.setOnClickListener{
                 if(expandview.visibility == View.GONE){
                     TransitionManager.beginDelayedTransition(cardview, AutoTransition())
@@ -45,6 +49,7 @@ class FindPostAdapter (val context : Context, private val findPosts : List<FindP
             cardplace.text = findPost.place
             val cardname : AppCompatTextView = itemView.findViewById(R.id.findcardtitle)
             cardname.text = findPost.name
+            cardname.isSelected = true
             val cardemail : AppCompatTextView = itemView.findViewById(R.id.findmailNumber)
             cardemail.text = findPost.user?.display_email
         }

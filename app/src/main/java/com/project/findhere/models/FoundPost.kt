@@ -6,6 +6,6 @@ data class FoundPost(
     var time_ms: Long = 0,
     var founddate: String ="无时间",
     var name : String = "无名称",
-    var imgurl: String = "无图片",
+    var imgurl: String = "",
     var place: String = "无地点",
     var description: String = "无描述")

@@ -23,6 +23,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.view.marginLeft
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.SetOptions
 
 
 class ProfileActivity : AppCompatActivity() {
@@ -123,27 +124,38 @@ class ProfileActivity : AppCompatActivity() {
         val v = LayoutInflater.from(this).inflate(R.layout.profile_alertdialog,null)
         builder.setView(v)
         val edittext : EditText = v.findViewById(R.id.alertdialogtext)
+        val title : TextView = v.findViewById(R.id.alertdialogTitle)
+        val titletext = when(position){
+            1 -> "用户名"
+            2 -> "QQ"
+            3 -> "联系邮箱"
+            5 -> "电话"
+            else -> ""
+        }
+        title.text = "修改${titletext}"
         builder.setPositiveButton("确认",
             DialogInterface.OnClickListener { dialog, which -> AlertDialogInput = edittext.text.toString()
-                Log.d("ProfileInfoChangeAlert",AlertDialogInput+"${position}")
                 documentRef.get()
                     .addOnSuccessListener { document ->
                         if (document != null){
-                            if (position == 0){
-                                firebaseDb.collection("users/display_email").add(AlertDialogInput)
-                            }
+                            val thisuser = document.toObject<User>()!!
                             if (position == 1){
-                                firebaseDb.collection("users/username").add(AlertDialogInput)
+                                thisuser.username = AlertDialogInput
                             }
-                            if (position == 2){
-                                firebaseDb.collection("users/qq").add(AlertDialogInput)
+                            else if (position == 2){
+                                thisuser.qq = AlertDialogInput
                             }
-                            if (position == 3){
-                                firebaseDb.collection("users/display_email").add(AlertDialogInput)
+                            else if (position == 3){
+                                thisuser.display_email = AlertDialogInput
                             }
-                            if (position == 5){
-                                firebaseDb.collection("users/phone").add(AlertDialogInput)
+                            else if (position == 5){
+                                thisuser.phone = AlertDialogInput
                             }
+                            documentRef.set(thisuser,
+                                SetOptions.merge())
+                                .addOnSuccessListener {
+                                    Log.d("ProfileInfoChangeAlert",AlertDialogInput+"${position}")
+                                }
                         }else {
                             Log.d("ProfileActivity", "get userinfo failed with no userid exist")
                         }
