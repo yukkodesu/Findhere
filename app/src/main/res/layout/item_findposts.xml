@@ -75,7 +75,7 @@
 
         <TextView
             android:id="@+id/findcardusername"
-            android:layout_width="wrap_content"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="3dp"
@@ -88,7 +88,7 @@
             android:id="@+id/findcardlocationimg"
             android:layout_width="20dp"
             android:layout_height="20dp"
-            android:layout_marginStart="80dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="15dp"
             app:layout_constraintStart_toEndOf="@id/findcardusername"
             app:layout_constraintTop_toBottomOf="@id/findcardscrollview"
@@ -96,9 +96,9 @@
 
         <TextView
             android:id="@+id/findtime"
-            android:layout_width="80dp"
+            android:layout_width="75dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
+            android:layout_marginStart="5dp"
             android:layout_marginTop="5dp"
             android:text="@string/findtime"
             app:layout_constraintStart_toEndOf="@+id/imageView"
@@ -108,7 +108,7 @@
             android:id="@+id/imageView"
             android:layout_width="18dp"
             android:layout_height="18dp"
-            android:layout_marginStart="81dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="6dp"
             android:src="@drawable/ic_baseline_calendar_today_24"
             app:layout_constraintStart_toEndOf="@+id/findcardusername"
@@ -116,7 +116,7 @@
 
         <TextView
             android:id="@+id/findcardloc"
-            android:layout_width="80dp"
+            android:layout_width="70dp"
             android:layout_height="20dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="15dp"
